@@ -1,0 +1,1 @@
+dsp_pc_counter.vhd,vhdl,xil_defaultlib,../../../../eight_bit_console.gen/sources_1/ip/dsp_pc_counter/sim/dsp_pc_counter.vhd,
