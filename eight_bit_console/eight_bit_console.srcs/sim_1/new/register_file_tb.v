@@ -63,12 +63,13 @@ module register_file_tb();
         #10 dest_sel = 4'hf; data = 8'hff; new_flags = 8'h88;
         // Double wide write
         #5 dest_sel = 4'ha; data = 8'haa; new_flags = 8'h33;
-        wide_mode = 1; we_flags = 1;
-        #10 dest_sel = 4'hb; data = 8'hbb;
-        #10 dest_sel = 4'hc; data = 8'hcc;
-        #10 dest_sel = 4'hd; data = 8'hdd;
-        #10 dest_sel = 4'he; data = 8'hee;
+        wide_mode = 1; we_flags = 1; data_wide = 8'h11;
+        #10 dest_sel = 4'hb; data = 8'hbb; data_wide = 8'h22;
+        #10 dest_sel = 4'hc; data = 8'hcc; data_wide = 8'h33;
+        #10 dest_sel = 4'hd; data = 8'hdd; data_wide = 8'h44;
+        #10 dest_sel = 4'he; data = 8'hee; data_wide = 8'h55;
         #10 dest_sel = 4'hf; data = 8'hff; new_flags = 8'h88;
+        data_wide = 8'h66;
         // Reads
         #5 we = 0;
         #5 src_a_sel = 4'ha; src_b_sel = 4'hb;
