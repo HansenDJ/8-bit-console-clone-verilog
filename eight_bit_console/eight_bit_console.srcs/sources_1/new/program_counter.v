@@ -23,8 +23,11 @@
 module program_counter(
     input clk,
     input enable,
+    input wb,
     input we,
     input [15:0] j_addr,
+    input [7:0] j_bank,
+    output reg [7:0] cur_bank,
     output [15:0] count
     );
     
@@ -41,6 +44,10 @@ module program_counter(
     //end
     
     //assign count = cur_addr;
+    
+    initial cur_bank = 0;
+    
+    always @(posedge clk) if (wb) cur_bank <= j_bank;
     
     // Use DSP to save other board resources
     dsp_pc_counter dsp_cnt (clk, enable, we, j_addr, count);
