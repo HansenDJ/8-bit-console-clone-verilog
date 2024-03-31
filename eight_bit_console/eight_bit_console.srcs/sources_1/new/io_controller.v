@@ -21,96 +21,64 @@
 
 
 module io_controller(
-    input clk,
     // Processor side interface
     input cpu_mem_req,
+    input switch_dev,
     input clr_data_ready,
     input clr_op_ready,
     input [1:0] mem_op,
     input [15:0] addr,
     input [7:0] dev_sel,
-    inout [7:0] next_data,
-    output reg [23:0] next_op = 0,
-    output reg [15:0] next_op_addr = 0,
+    input [7:0] new_data,
+    output reg [7:0] fetched_data,
     output reg data_ready = 0,
+    // Bus goes directly to instruction pipeline
     output reg op_ready = 0,
+    output reg [7:0] op_part,
     // I/O bus side interface
     inout [7:0] io_bus,
     output [15:0] dev_addr,
-    output [255:0] dev_oe,
-    output [255:0] dev_we
+    output reg [255:0] dev_oe,
+    output reg [255:0] dev_we
     );
     
     // Memory operations
-    parameter INSTR_LOAD = 0, LOAD = 1, STORE = 2, PRIORITY_INSTR_LOAD = 3;
+    parameter INSTR_LOAD = 0, LOAD = 1, STORE = 2;
     
-    // Memory controller states
-    parameter I_CACHING = 0, READ = 1, WRITE = 2, I_LOADING = 3;
+    reg [7:0] data_dev_sel = 0;
+    reg [15:0] stored_addr = 0;
     
-    // Save selectors for the in between instruction and data reads
-    reg [1:0] cur_op_segment = 0;
-    reg [7:0] instr_dev_sel = 0;
-    
-    reg [7:0] data_cache = 0, data_dev_sel = 0;
-    reg [15:0] data_addr = 0;
-    
-    // State machine - Caching instructions by default
-    reg [1:0] control_state = I_CACHING;
+    assign dev_addr = stored_addr;
+    assign io_bus = (mem_op == STORE && cpu_mem_req) ? new_data : 8'hz;
     
     always @(posedge clr_data_ready) data_ready <= 0;
-    always @(posedge clr_op_ready) begin
-        op_ready <= 0;
-        
-    end
+    always @(posedge clr_op_ready) op_ready <= 0;
+    
+    always @(posedge switch_dev) data_dev_sel <= dev_sel;
     
     always @(posedge cpu_mem_req) begin
         case (mem_op)
             INSTR_LOAD: begin
-                
+                stored_addr <= addr;
+                dev_oe[data_dev_sel] <= 1;
+                op_part = io_bus;
+                op_ready = 1;
             end
             LOAD: begin
-                
+                stored_addr <= addr;
+                dev_oe[data_dev_sel] <= 1;
+                fetched_data = io_bus;
+                data_ready = 1;
             end
             STORE: begin
-                
-            end
-            PRIORITY_INSTR_LOAD: begin
-                
+                stored_addr <= addr;
+                dev_we[data_dev_sel] <= 1;
+                data_ready = 1;
             end
         endcase
+        dev_oe = 0;
+        dev_we = 0;
     end
-    
-    always @(posedge clk) begin
-        case (control_state)
-            I_CACHING: begin
-                if (!op_ready) begin
-                    case (cur_op_segment)
-                        0: begin
-                            next_op[23:16] <= io_bus;
-                            cur_op_segment <= 1;
-                        end
-                        1: begin
-                            next_op[15:8] <= io_bus;
-                            cur_op_segment <= 2;
-                        end
-                        2: begin
-                            next_op[7:0] <= io_bus;
-                            cur_op_segment <= 0;
-                            op_ready <= 1;
-                        end
-                    endcase
-                end
-            end
-            I_LOADING: begin
-                
-            end
-            READ: begin
-                
-            end
-            WRITE: begin
-                
-            end
-        endcase
-    end    
+
  
 endmodule
