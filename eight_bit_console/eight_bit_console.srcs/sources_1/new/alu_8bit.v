@@ -44,9 +44,10 @@ endmodule
 module multiply_8bit(
     input [7:0] a,
     input [7:0] b,
-    output 
+    output [7:0] mul8_out
     );
 
+    assign mul8_out = a * b;
 endmodule
 
 module divide_8bit(
