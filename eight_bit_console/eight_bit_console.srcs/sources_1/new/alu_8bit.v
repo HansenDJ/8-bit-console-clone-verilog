@@ -73,6 +73,7 @@ module and_8bit(
 
 endmodule
 
+// One's compliment (flip bits)
 module compliment_8bit(
     
     );
