@@ -1,0 +1,12 @@
+Time resolution is 1 ps
+---- Test Case 1: INSTR_LOAD ----
+Test Case 1 FAILED
+---- Test Case 2: LOAD ----
+Test Case 2 FAILED
+---- Test Case 3: STORE ----
+Test Case 3 FAILED
+---- Test Case 4: Unstable State ----
+Test Case 4 PASSED
+---- Test Case 5: Metastability ----
+Test Case 5 PASSED (Potential Metastability)
+$finish called at time : 170 ns : File "/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/io_standalone_test/new/io_controller_tb.v" Line 152

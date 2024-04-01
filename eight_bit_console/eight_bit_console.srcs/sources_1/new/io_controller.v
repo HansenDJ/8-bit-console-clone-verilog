@@ -57,21 +57,19 @@ module io_controller(
     always @(posedge switch_dev) data_dev_sel <= dev_sel;
     
     always @(posedge cpu_mem_req) begin
+        stored_addr <= addr;
         case (mem_op)
             INSTR_LOAD: begin
-                stored_addr <= addr;
                 dev_oe[data_dev_sel] <= 1;
                 op_part = io_bus;
                 op_ready = 1;
             end
             LOAD: begin
-                stored_addr <= addr;
                 dev_oe[data_dev_sel] <= 1;
                 fetched_data = io_bus;
                 data_ready = 1;
             end
             STORE: begin
-                stored_addr <= addr;
                 dev_we[data_dev_sel] <= 1;
                 data_ready = 1;
             end
