@@ -46,11 +46,12 @@ module fetch_execute(
 
 
     // Pipeline
-    byte stage_in, int_stage_a, int_stage_b, stage_out;
+    byte op_part_3, op_part_2, op_part_1, op_part_0;
+    logic [3:0] dirty_pipe;
     
     // Fetch logic
     addr_t cur_inst_addr = 0;
-    logic [1:0] to_next_op = 0;
+    logic [1:0] op_length = 0;
     logic mem_op_pending = 0;
     logic dirty_pipeline = 0;
     
@@ -59,16 +60,17 @@ module fetch_execute(
     
     assign mem_sel = mem_op_pending;
     assign op_part_addr = pc_cur_count;
-    assign pc_we = !mem_op_pending;
+    assign pc_enable = !mem_op_pending;
     
     
     always @(clk) begin
         if (!mem_op_pending) begin
-            stage_in <= op_part_data;
-            int_stage_a <= stage_in;
-            int_stage_b <= int_stage_a;
-            stage_out <= int_stage_b;
+            op_part_3 <= op_part_data;
+            op_part_2 <= op_part_3;
+            op_part_1 <= op_part_2;
+            op_part_0 <= op_part_1;
         end
+        
     end
 
 endmodule
