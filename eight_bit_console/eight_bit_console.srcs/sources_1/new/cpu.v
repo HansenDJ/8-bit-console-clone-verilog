@@ -21,7 +21,12 @@
 
 
 module cpu(
-    input clk
+    input clk,
+    input [7:0] mem_data_in,
+    output [7:0] mem_data_out,
+    output [15:0] mem_addr,
+    output mem_read,
+    output mem_write
     );
     
     wire rfile_bit_mode;
@@ -57,21 +62,16 @@ module cpu(
         .new_flags(rfile_new_flags),
         .flags(rfile_cur_flags)
     );
+
+
+    // Memory data bus logic
+    wire mem_select;
     
     
-    wire enable_pc;
-    wire pc_we;
-    wire pc_j_addr;
-    wire pc_cur_count;
     
-    program_counter prog_count (
-        .clk(clk),
-        .enable(enable_pc),
-        .we(pc_we),
-        .j_addr(pc_j_addr),
-        .count(pc_cur_count)
-    );
-    
+    // Instruction pipeline and decoder
+    wire [15:0] fetcher_addr;
+    wire [7:0] fetcher_next_i;
     
     
     
