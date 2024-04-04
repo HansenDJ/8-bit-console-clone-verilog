@@ -72,6 +72,20 @@ module cpu(
     // Instruction pipeline and decoder
     wire [15:0] fetcher_addr;
     wire [7:0] fetcher_next_i;
+
+    wire [3:0] alu_function;
+    wire [11:0] reg_file_full_sel;
+    wire bit_mode;
+
+    fetch_execute executor_1 (
+        .clk(clk),
+        .mem_sel(mem_select),
+        .op_part_data(fetcher_next_i),
+        .op_part_addr(fetcher_addr),
+        .alu_sel(alu_function),
+        .reg_file_sel(reg_file_full_sel),
+        .bit_mode(bit_mode)
+    );
     
     
     
