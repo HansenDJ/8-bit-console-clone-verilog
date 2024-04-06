@@ -56,8 +56,6 @@ module fetch_execute(
     // Decode logic
     logic [31:0] deco_op_parts = {op_part[0], op_part[1], op_part[2], op_part[3]};
     logic [7:0] deco_cur_flags;
-    logic [1:0] deco_op_length;
-    logic deco_is_dirty_op;
     logic [3:1] deco_part_dirty;
     logic deco_jump_en;
     logic [15:0] deco_jump_addr;
@@ -68,8 +66,7 @@ module fetch_execute(
     instruction_decoder inst_decode (
         .op_parts(deco_op_parts),
         .cur_flags(deco_cur_flags),
-        .op_length(deco_op_length),
-        .is_dirty_op(deco_is_dirty_op),
+        .cur_op_dirty(dirty_pipe[0]),
         .part_dirty(deco_part_dirty),
 
         // These are directly routed to the top level
