@@ -21,12 +21,14 @@
 
 
 module alu_16bit(
-    input [15:0] alu16_in_a,
-    input [15:0] alu16_in_b,
-    input [4:0] alu16_sel,
+    input [7:0] alu16_in_a,
+    input [7:0] alu16_in_b,
+    input [2:0] alu16_sel, // Selector of ALU function
     input sub,
     output [15:0] alu16_out
     );
+    
+    
 endmodule
 
 module add_16bit(
@@ -58,7 +60,7 @@ module dec_16bit(
 endmodule
 
 // Sets c, z, s, or p flags to a 0 or 1
-module compare_16bit(
+module not_16bit(
     input [15:0] a,
     input [15:0] b,
     output [15:0] cmp16_out,
