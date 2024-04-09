@@ -22,25 +22,56 @@
 
 module alu_16bit(
     input [7:0] alu16_in_a,
+    input [7:0] alu16_in_a_w,
     input [7:0] alu16_in_b,
-    input [2:0] alu16_sel, // Selector of ALU function
+    input [7:0] alu16_in_b_w,
+    input [3:0] alu16_sel, // Selector of ALU function
     input sub,
-    output [15:0] alu16_out
+    output [7:0] alu16_out,
+    output [7:0] alu16_out_w,
+    output [7:0] flags_out // o, p, s, z, c flags
     );
     
+    wire alu_in_a_full;
+    wire alu_in_b_full;
+    wire alu_out_full; // alu16_out and alu16_out_w concatenated
     
+    wire add_out;
+    wire sub_out;
+    wire inc_out;
+    wire dec_out;
+    wire cmp_out;
+    wire lea_out;
+    
+    assign alu_in_a_full = {alu16_in_a, alu16_in_a_w};
+    assign alu_in_b_full = {alu16_in_b, alu16_in_b_w};
+    
+    add_16bit add16 (alu16_in_a, alu16_in_b, sub, add_out);
 endmodule
 
 module add_16bit(
     input [15:0] a,
     input [15:0] b,
     input sub,
-    output [16:0] add16_out,    // msb for carry out, 16-bit sum
+    output [16:0] add16_extra,    // msb for carry out, 16-bit sum
+    output [15:0] add16_out,
     output cout,
     output c, z, s, p   // flag values
     );
     
-    assign sum = sub ? a + (~b + 1) : a + b;
+    assign add16_extra = sub ? a + (~b + 1) : a + b;
+    assign add16_out = add16_extra[7:0];
+    
+    // Overflow flag
+    assign o = (add16_out < a | add16_out < b) ? 1 : 0;
+    // Parity flag, LSB or result
+    assign p = add16_out[0];
+    // Sign flag, MSB of result
+    assign s = add16_out[15];
+    // Zero flag, check if values equal
+    assign z = (add16_out == 0) ? 1 : 0;
+    // Carry flag
+    assign c = add16_extra[16];
 endmodule
 
 // Increment
@@ -60,7 +91,7 @@ module dec_16bit(
 endmodule
 
 // Sets c, z, s, or p flags to a 0 or 1
-module not_16bit(
+module cmp_16bit(
     input [15:0] a,
     input [15:0] b,
     output [15:0] cmp16_out,
