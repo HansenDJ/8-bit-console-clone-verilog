@@ -217,7 +217,7 @@ module instruction_decoder(
         enable_int = 0;
         disable_int = 0;
         stop_exec = 0;
-        ld_immediate 0;
+        ld_immediate = 0;
         immediate = 0;
         if (op_type == OPTYPE_MIN)
             case (min_op_code)
