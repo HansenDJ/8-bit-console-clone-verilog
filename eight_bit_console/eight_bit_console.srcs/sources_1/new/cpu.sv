@@ -36,15 +36,27 @@ typedef enum logic [1:0] {
     INS_FOUR = 3
 } InstructionSizes;
 
+typedef enum [4:0] {
+    ALU_ADD = 0,
+    ALU_SUB = 1,
+    ALU_MUL = 2,
+    ALU_DIV = 3,
+    ALU_XOR = 4,
+    ALU_OR = 5,
+    ALU_AND = 6,
+    ALU_NOT = 7,
+    ALU_INC = 8,
+    ALU_DEC = 9,
+    ALU_LSL = 10,
+    ALU_LSR = 11,
+    ALU_ASL = 12,
+    ALU_ASR = 13,
+    ALU_CP = 14
+} AluOp;
+
 typedef enum logic [2:0] {
-    MIN_OP_NOP = 4'h0,         // No operation
-    MIN_OP_RET = 4'h1,         // Jump back to popped address from stack
-    MIN_OP_EI = 4'h2,          // Enable interrupt
-    MIN_OP_DI = 4'h3,          // Disable interrupt
-    MIN_OP_WAIT = 4'h4,        // CPU in wait mode (stop execution)
-    MIN_OP_INC_R5 = 4'h5,      // Increment accumulator
-    MIN_OP_PUSH_R5 = 4'h6,    // Push accumulator to stack
-    MIN_OP_POP_R5 = 4'h7      // Pop accumulator from stack
+    MIN_OP_NOP = 3'h0,         // No operation
+    MIN_OP_INC_R5 = 3'h5       // Increment accumulator
 } MinOpcode;
 
 typedef enum logic [6:0] {
@@ -66,11 +78,11 @@ typedef enum logic [6:0] {
     OP_OR = 7'h15,        // d <= op1 or op2
     OP_AND = 7'h16,       // d <= op1 and op2
     OP_LSL = 7'h17,       // d <= op1 << op2
-    OP_ASL = 7'h17,       // d <= op1 << op2
+//    OP_ASL = 7'h17,       // d <= op1 << op2
     OP_LSR = 7'h18,       // d <= op1 >> op2 (Logical)
     OP_ASR = 7'h19,       // d <= op1 >> op2 (Arithmetic)
 
-    // Special Operations
+    // Single Parameter ALU Operations
     OP_NOT = 7'h1C,       // r <= ~r
     OP_INC = 7'h1D,       // r <= r + 1
     OP_DEC = 7'h1E,       // r <= r - 1
@@ -80,23 +92,24 @@ typedef enum logic [6:0] {
 module cpu(
     input clk,
     input [7:0] mem_data_in,
-    output [7:0] mem_data_out,
-    output [15:0] mem_addr,
-    output mem_we
+    output logic [7:0] mem_data_out,
+    output logic [15:0] mem_addr,
+    output logic mem_we
+    
     );
     
-    wire rfile_wide_mode;
-    wire rfile_we;
-    wire rfile_data_in;
+    logic rfile_wide_mode = 0;
+    logic rfile_we;
+    logic rfile_data_in;
     wire rfile_data_in_wide;
-    wire rfile_write_sel;
-    wire rfile_sel_a;
-    wire rfile_sel_b;
+    logic rfile_write_sel;
+    logic rfile_sel_a;
+    logic rfile_sel_b;
     wire rfile_output_a;
     wire rfile_output_a_wide;
     wire rfile_output_b;
     wire rfile_output_b_wide;
-    wire rfile_flags_we;
+    logic rfile_flags_we;
     wire rfile_new_flags;
     wire rfile_cur_flags;
     
@@ -120,40 +133,46 @@ module cpu(
     );
     
     
-    wire alu_selector;
+    logic alu_selector;
+    wire alu_out;
     
     
     alu_8bit alu_data (
         rfile_output_a,
         rfile_output_b,
         alu_selector,
-        rfile_data_in,
+        alu_out,
         rfile_new_flags
     );
     
     
-    wire pc_enable;
-    wire pc_write;
-    wire [15:0] target_addr;
-    wire cur_addr;
+    logic pc_enable = 1;
+    logic pc_write;
+    logic [15:0] pc_target_addr;
+    logic [15:0] pc_cur_addr;
     
-    logic [15:0] instruction_pointer;
+//    logic [15:0] instruction_pointer;
     
     program_counter prog_count (
         clk,
         pc_enable,
         pc_write,
-        target_addr,
-        cur_addr
+        pc_target_addr,
+        pc_cur_addr
     );
     
     // Fetcher and executor (emphasis on the fetcher)
     logic [7:0] op_parts [4];
     
-    wire op_byte;
-    assign op_byte = {op_parts[0][2:0], op_parts[1][7:4]};
-    
-    logic min_op = op_parts[0][3];
+    wire [6:0] op_byte = {op_parts[0][2:0], op_parts[1][7:4]};
+    wire [2:0] min_op = op_parts[0][2:0];
+    wire [3:0] dest_bits = op_parts[1][3:0];
+    wire [3:0] src_bits = op_parts[2][7:4];
+    wire [3:0] op1_bits = op_parts[2][7:4];
+    wire [3:0] op2_bits = op_parts[2][3:0];
+    wire [15:0] op_dest_addr = {op_parts[2], op_parts[3]};
+
+    logic is_min_op = op_parts[0][3];
     logic cond_met;
     logic inst_size;
     
@@ -166,8 +185,8 @@ module cpu(
     always @(posedge clk) begin
         case (fe_state)
             S_FETCH_1: begin
-                if (min_op & cond_met) fe_state <= S_EXECUTE;
-                if (!min_op) fe_state <= S_FETCH_2;
+                if (is_min_op & cond_met) fe_state <= S_EXECUTE;
+                if (!is_min_op) fe_state <= S_FETCH_2;
             end
             S_FETCH_2: begin
                 if ((inst_size == INS_TWO) & cond_met) fe_state <= S_EXECUTE;
@@ -187,6 +206,223 @@ module cpu(
         endcase
     end
     
+    // Combinational state logic
+    always_comb begin
+        case (fe_state)
+            S_FETCH_1: begin
+                mem_addr = pc_cur_addr;
+                pc_enable = 1;
+                rfile_we = 0;
+                mem_we = 0;
+                pc_write = 0;
+            end
+            S_FETCH_2: begin
+                mem_addr = pc_cur_addr;
+                pc_enable = 1;
+            end
+            S_FETCH_3: begin
+                mem_addr = pc_cur_addr;
+                pc_enable = 1;
+            end
+            S_FETCH_4: begin
+                mem_addr = pc_cur_addr;
+                pc_enable = 1;
+            end
+            S_JUMP_1: begin
+                // Same as incrementing program counter by 1
+                pc_enable = 1;
+            end
+            S_JUMP_2: begin
+                // Loading this will override the +1 increment into a +2 increment
+                pc_enable = 1;
+                pc_write = 1;
+                pc_target_addr = pc_cur_addr + 2;
+            end
+            S_EXECUTE: begin
+                pc_enable = 0;
+                if (is_min_op) begin
+                    case (min_op)
+                        MIN_OP_INC_R5: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = 4'h5;
+                            rfile_sel_a = 4'h5;
+                            alu_selector = ALU_INC;
+                            rfile_we = 1;
+                        end
+                        // All other cases act as NOP
+                        // This is left as a switch-case for future expansion
+                    endcase
+                end
+                else
+                    case (op_byte)
+                        OP_MOV: begin
+                            rfile_data_in = rfile_output_a;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = src_bits;
+                            rfile_we = 1;
+                        end
+                        OP_LD: begin
+                            rfile_data_in = mem_data_in;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = src_bits;
+                            mem_addr = {rfile_output_a, rfile_output_a_wide};
+                            rfile_we = 1;
+                        end
+                        OP_STR: begin
+                            rfile_sel_a = dest_bits;
+                            rfile_sel_b = src_bits;
+                            mem_addr = {rfile_output_a, rfile_output_a_wide};
+                            mem_data_out = rfile_output_b;
+                            mem_we = 1;
+                        end
+                        OP_JP: begin
+                            pc_target_addr = op_dest_addr;
+                            pc_write = 1;
+                        end
+                        OP_JMP: begin
+                            rfile_sel_a = dest_bits;
+                            pc_target_addr = {rfile_output_a, rfile_output_a_wide};
+                            pc_write = 1;
+                        end
+                        OP_ADD: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_ADD;
+                            rfile_we = 1;
+                        end
+                        OP_SUB: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_SUB;
+                            rfile_we = 1;
+                        end
+                        OP_MUL: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_MUL;
+                            rfile_we = 1;
+                        end
+                        OP_DIV: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_DIV;
+                            rfile_we = 1;
+                        end
+                        OP_XOR: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_XOR;
+                            rfile_we = 1;
+                        end
+                        OP_OR: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_OR;
+                            rfile_we = 1;
+                        end
+                        OP_AND: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_AND;
+                            rfile_we = 1;
+                        end
+                        OP_LSL: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_LSL;
+                            rfile_we = 1;
+                        end
+//                        OP_ASL: begin
+//                            rfile_data_in = alu_out;
+//                            rfile_write_sel = dest_bits;
+//                            rfile_sel_a = op1_bits;
+//                            rfile_sel_b = op2_bits;
+//                            alu_selector = ALU_ASL;
+//                            rfile_we = 1;
+//                        end
+                        OP_LSR: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_LSR;
+                            rfile_we = 1;
+                        end
+                        OP_ASR: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = op1_bits;
+                            rfile_sel_b = op2_bits;
+                            alu_selector = ALU_ASR;
+                            rfile_we = 1;
+                        end
+                        OP_NOT: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = dest_bits;
+                            alu_selector = ALU_NOT;
+                            rfile_we = 1;
+                        end
+                        OP_INC: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = dest_bits;
+                            alu_selector = ALU_INC;
+                            rfile_we = 1;
+                        end
+                        OP_DEC: begin
+                            rfile_data_in = alu_out;
+                            rfile_write_sel = dest_bits;
+                            rfile_sel_a = dest_bits;
+                            alu_selector = ALU_DEC;
+                            rfile_we = 1;
+                        end
+                        OP_CP: begin
+                            rfile_sel_a = dest_bits;
+                            alu_selector = ALU_CP;
+                            rfile_flags_we = 1;
+                        end
+                    endcase
+            end
+        endcase
+    end
+    
+    // Flip-flop state logic
+    always @(fe_state) begin
+        case (fe_state)
+            S_FETCH_1: begin
+                op_parts[0] <= mem_data_in;
+            end
+            S_FETCH_2: begin
+                op_parts[1] <= mem_data_in;
+            end
+            S_FETCH_3: begin
+                op_parts[2] <= mem_data_in;
+            end
+            S_FETCH_4: begin
+                op_parts[3] <= mem_data_in;
+            end
+//            S_JUMP_1: 
+//            S_JUMP_2:
+//            S_EXECUTE:
+        endcase
+    end
     
 endmodule
 
