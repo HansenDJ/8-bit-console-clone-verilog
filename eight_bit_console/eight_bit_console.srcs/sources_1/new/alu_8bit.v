@@ -24,7 +24,6 @@ module alu_8bit(
     input [7:0] alu8_in_a,
     input [7:0] alu8_in_b,
     input [3:0] alu8_sel, // Selector of ALU function
-    input sub,
     output reg [7:0] alu8_out,
     output reg [7:0] flags_out // o, p, s, z, c flags
     );
@@ -61,6 +60,9 @@ module alu_8bit(
     wire asr_flags_out;
     wire cmp_flags_out;
     
+    // Dirty hack for add/sub
+    reg sub = 0;
+    
     // Instantiate function modules
     add_8bit add8 (alu8_in_a, alu8_in_b, sub, add8_out, add_flags_out);
     mul_8bit mul8 (alu8_in_a, alu8_in_b, mul8_out, mul_flags_out);
@@ -81,63 +83,65 @@ module alu_8bit(
     always @ (*) begin
         case (alu8_sel) // Addition function
             4'h0: begin
-                alu8_out = add_out;
-                flags_out = add_flags_out;
+                alu8_out <= add_out;
+                sub <= 0;
+                flags_out <= add_flags_out;
             end
             4'h1: begin
-                alu8_out = sub_out;
-                flags_out = add_flags_out;
+                alu8_out <= sub_out;
+                sub <= 1;
+                flags_out <= add_flags_out;
             end
             4'h2: begin
-                alu8_out = mul_out;
-                flags_out = mul_flags_out;
+                alu8_out <= mul_out;
+                flags_out <= mul_flags_out;
             end
             4'h3: begin
-                alu8_out = div_out;
-                flags_out = div_flags_out;
+                alu8_out <= div_out;
+                flags_out <= div_flags_out;
             end
             4'h4: begin
-                alu8_out = xor_out;
-                flags_out = xor_flags_out;
+                alu8_out <= xor_out;
+                flags_out <= xor_flags_out;
             end
             4'h5: begin
-                alu8_out = or_out;
-                flags_out = or_flags_out;
+                alu8_out <= or_out;
+                flags_out <= or_flags_out;
             end
             4'h6: begin
-                alu8_out = and_out;
-                flags_out = and_flags_out;
+                alu8_out <= and_out;
+                flags_out <= and_flags_out;
             end
             4'h7: begin
-                alu8_out = not_out;
-                flags_out = not_flags_out;
+                alu8_out <= not_out;
+                flags_out <= not_flags_out;
             end
             4'h8: begin
-                alu8_out = inc_out;
-                flags_out = inc_flags_out;
+                alu8_out <= inc_out;
+                flags_out <= inc_flags_out;
             end
             4'h9: begin
-                alu8_out = dec_out;
-                flags_out = dec_flags_out;
+                alu8_out <= dec_out;
+                flags_out <= dec_flags_out;
             end
             4'ha: begin
-                alu8_out = lsl_out;
-                flags_out = lsl_flags_out;
+                alu8_out <= lsl_out;
+                flags_out <= lsl_flags_out;
             end
             4'hb: begin
-                alu8_out = lsr_out;
-                flags_out = lsr_flags_out;
+                alu8_out <= lsr_out;
+                flags_out <= lsr_flags_out;
             end
             4'hc: begin
-                alu8_out = asl_out;
-                flags_out = asl_flags_out;
+                alu8_out <= asl_out;
+                flags_out <= asl_flags_out;
             end
             4'hd: begin
-                alu8_out = asr_out;
-                flags_out = asr_flags_out;
+                alu8_out <= asr_out;
+                flags_out <= asr_flags_out;
             end
             4'he: begin
-                flags_out = cmp_flags_out;
+                flags_out <= cmp_flags_out;
             end
         endcase
     end
@@ -204,9 +208,9 @@ module div_8bit(
     assign div8_out = a / b;
     
     assign o = 0; // Overflow flag: non relevant so overwrite
-    assign p = xor8_out[0]; // Parity flag, LSB or result
-    assign s = xor8_out[7]; // Sign flag, MSB of result
-    assign z = (xor8_out == 0) ? 1 : 0; // Zero flag, check if values equal
+    assign p = div8_out[0]; // Parity flag, LSB or result
+    assign s = div8_out[7]; // Sign flag, MSB of result
+    assign z = (div8_out == 0) ? 1 : 0; // Zero flag, check if values equal
     assign c = 0; // Carry flag: non relevant so overwrite
     
     assign div_flags_out = {o, p, s, z, c}; // Flags bitmask to be ANDed with flag register
