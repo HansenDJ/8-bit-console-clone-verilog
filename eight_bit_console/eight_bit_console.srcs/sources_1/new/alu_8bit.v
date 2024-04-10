@@ -30,7 +30,7 @@ module alu_8bit(
     
     // ALU function outputs
     wire [7:0] add8_out;
-    wire [7:0] sub8_out;
+    wire [7:0] sub8_out = add8_out;
     wire [7:0] mul8_out;
     wire [7:0] div8_out;
     wire [7:0] xor8_out;

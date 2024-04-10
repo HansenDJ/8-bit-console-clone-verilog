@@ -38,7 +38,7 @@ module ram(
     initial begin
       for (i=0; i<=16'hffff; i=i+1)
         ram_mem[i] = 8'h00;
-      $readmemb ("ram.bin", ram_mem, 0);
+      $readmemh ("ram.mem", ram_mem, 0);
     end
     
     always_ff @(posedge clk) begin

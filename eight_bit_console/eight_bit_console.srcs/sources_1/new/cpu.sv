@@ -180,7 +180,7 @@ module cpu(
     cond_check op_cond_check (op_parts[0][7:4], rfile_cur_flags, cond_met);
     instruction_size_decoder ins_size_decode (op_byte, inst_size);
     
-    logic fe_state = S_FETCH_1;
+    FetchExecState fe_state = S_FETCH_1;
     
     // State transitions
     always @(posedge clk) begin
@@ -208,9 +208,10 @@ module cpu(
     end
     
     // Combinational state logic
-    always_comb begin
+    always_latch begin
         case (fe_state)
             S_FETCH_1: begin
+                op_parts[0] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
                 rfile_we = 0;
@@ -218,14 +219,17 @@ module cpu(
                 pc_write = 0;
             end
             S_FETCH_2: begin
+                op_parts[1] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
             end
             S_FETCH_3: begin
+                op_parts[2] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
             end
             S_FETCH_4: begin
+                op_parts[3] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
             end
@@ -406,27 +410,6 @@ module cpu(
                         end
                     endcase
             end
-        endcase
-    end
-    
-    // Flip-flop state logic
-    always @(*) begin
-        case (fe_state)
-            S_FETCH_1: begin
-                op_parts[0] <= mem_data_in;
-            end
-            S_FETCH_2: begin
-                op_parts[1] <= mem_data_in;
-            end
-            S_FETCH_3: begin
-                op_parts[2] <= mem_data_in;
-            end
-            S_FETCH_4: begin
-                op_parts[3] <= mem_data_in;
-            end
-//            S_JUMP_1: 
-//            S_JUMP_2:
-//            S_EXECUTE:
         endcase
     end
     
