@@ -1,0 +1,14 @@
+muxpart__65585_ram
+reg__21751_ram
+ram__GB2
+ram__GB3
+ram__GB4
+ram__GB5
+ram__GB6
+ram__GB7
+ram__GB8
+ram__GB9
+ram__GB10
+ram__GB11
+ram__GB12
+cpu

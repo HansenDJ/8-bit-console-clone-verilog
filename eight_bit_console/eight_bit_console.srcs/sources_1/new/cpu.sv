@@ -96,8 +96,9 @@ module cpu(
     output logic [7:0] mem_data_out,
     output logic [15:0] mem_addr,
     output logic mem_we
-    
     );
+    
+    initial mem_we = 0;
     
     logic alu_selector;
     wire [7:0] alu_out;

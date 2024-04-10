@@ -34,15 +34,15 @@ module ram(
     reg [7:0] ram_mem [16'hffff:0];
     
     // Initialize RAM contents
-    integer i;
+//    integer i;
     initial begin
-      for (i=0; i<=16'hffff; i=i+1)
-        ram_mem[i] = 8'h00;
+//      for (i=0; i<=16'hffff; i=i+1)
+//        ram_mem[i] = 8'h00;
       $readmemh ("ram.mem", ram_mem, 0);
     end
     
     always_ff @(posedge clk) begin
-        ram_mem[addr] <= data_in;
+        if (we) ram_mem[addr] <= data_in;
         ram_mem[16'hfffd] <= sw_in[15:8];
         ram_mem[16'hfffc] <= sw_in[7:0];
     end

@@ -28,7 +28,7 @@ module eight_bit_console_top(
     logic [7:0] cpu_din;
     logic [7:0] cpu_dout;
     logic [15:0] mem_addr;
-    logic mem_write_en;
+    wire mem_write_en;
     
     cpu core1 (
         .clk(hw_clk),
