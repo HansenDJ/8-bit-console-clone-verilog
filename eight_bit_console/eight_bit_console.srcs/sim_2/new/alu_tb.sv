@@ -20,13 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module alu_go_bruh();
+module alu_tb();
 
     reg [7:0] alu8_in_a, alu8_in_b;
     reg [3:0] alu8_sel;
     wire [7:0] alu8_out, flags_out;
     
-    alu_8bit bruh (alu8_in_a, alu8_in_b, alu8_sel, alu8_out, flags_out);
+    alu_8bit alu (alu8_in_a, alu8_in_b, alu8_sel, alu8_out, flags_out);
     
     initial begin
         alu8_in_a = 0; alu8_in_b = 0; alu8_sel = 0;
