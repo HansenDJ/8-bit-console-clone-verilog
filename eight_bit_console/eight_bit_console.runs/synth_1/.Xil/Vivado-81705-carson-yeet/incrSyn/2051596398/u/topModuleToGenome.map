@@ -1,3 +1,0 @@
-eight_bit_console_top: ram, cpu, 
-ram: ram__GB8, ram__GB12, ram__GB7, ram__GB5, ram__GB9, ram__GB10, reg__21751_ram, ram__GB6, ram__GB11, muxpart__65585_ram, ram__GB2, ram__GB4, ram__GB3, 
-cpu: cpu, 

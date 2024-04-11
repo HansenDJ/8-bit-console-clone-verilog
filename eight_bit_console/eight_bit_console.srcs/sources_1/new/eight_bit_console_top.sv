@@ -22,7 +22,8 @@
 
 module eight_bit_console_top(
     input hw_clk,
-    input [15:0] switches
+    input [15:0] switches,
+    output disp_mem
     );
     
     logic [7:0] cpu_din;
@@ -38,7 +39,7 @@ module eight_bit_console_top(
         .mem_we(mem_write_en)
     );
     
-    logic [15:0] disp_mem;
+//    logic [15:0] disp_mem;
     
     ram mem1 (
         .clk(hw_clk),

@@ -31,24 +31,25 @@ module ram(
     output [15:0] sseg_out
     );
 
-    reg [7:0] ram_mem [16'hffff:0];
+    reg [7:0] ram_mem [256];
+    reg [7:0] upper_ram_mem [256];
     
     // Initialize RAM contents
-//    integer i;
     initial begin
-//      for (i=0; i<=16'hffff; i=i+1)
-//        ram_mem[i] = 8'h00;
       $readmemh ("ram.mem", ram_mem, 0);
     end
     
     always_ff @(posedge clk) begin
-        if (we) ram_mem[addr] <= data_in;
-        ram_mem[16'hfffd] <= sw_in[15:8];
-        ram_mem[16'hfffc] <= sw_in[7:0];
+        if (we) begin
+            if (addr < 8'hff) ram_mem[addr] <= data_in;
+            else upper_ram_mem[addr] <= data_in;
+        end
+        upper_ram_mem[16'hfd] <= sw_in[15:8];
+        upper_ram_mem[16'hfc] <= sw_in[7:0];
     end
     
-    assign data_out = ram_mem[addr];
-    assign sseg_out[15:8] = ram_mem[16'hffff];
-    assign sseg_out[7:0] = ram_mem[16'hfffe];
+    assign data_out = (addr < 8'hff) ? ram_mem[addr]: upper_ram_mem[addr];
+    assign sseg_out[15:8] = upper_ram_mem[16'hff];
+    assign sseg_out[7:0] = upper_ram_mem[16'hfe];
 
 endmodule
