@@ -78,7 +78,6 @@ create_project -in_memory -part xc7a35tcpg236-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.cache/wt [current_project]
 set_property parent.project_path /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
@@ -93,7 +92,6 @@ read_mem {
 }
 read_verilog -library xil_defaultlib -sv {
   /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv
-  /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv
   /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/ram.sv
   /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/eight_bit_console_top.sv
 }
@@ -102,12 +100,7 @@ read_verilog -library xil_defaultlib {
   /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/display.v
   /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/display_top.v
   /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/hex_gen.v
-  /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/program_counter.v
-  /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/register_file.v
 }
-read_ip -quiet /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/ip/dsp_pc_counter/dsp_pc_counter.xci
-set_property used_in_implementation false [get_files -all /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.gen/sources_1/ip/dsp_pc_counter/dsp_pc_counter_ooc.xdc]
-
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -126,7 +119,7 @@ read_checkpoint -auto_incremental -incremental /home/carson/Nextcloud/Documents/
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top eight_bit_console_top -part xc7a35tcpg236-1
+synth_design -top eight_bit_console_top -part xc7a35tcpg236-1 -directive AlternateRoutability -no_lc -shreg_min_size 10
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"

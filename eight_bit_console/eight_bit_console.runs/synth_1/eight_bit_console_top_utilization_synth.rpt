@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-| Date         : Wed Apr 10 21:26:17 2024
+| Date         : Wed Apr 10 23:27:58 2024
 | Host         : carson-yeet running 64-bit CachyOS
 | Command      : report_utilization -file eight_bit_console_top_utilization_synth.rpt -pb eight_bit_console_top_utilization_synth.pb
 | Design       : eight_bit_console_top
@@ -28,18 +28,20 @@ Table of Contents
 1. Slice Logic
 --------------
 
-+-------------------------+------+-------+------------+-----------+-------+
-|        Site Type        | Used | Fixed | Prohibited | Available | Util% |
-+-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             | 1189 |     0 |          0 |     20800 |  5.72 |
-|   LUT as Logic          | 1189 |     0 |          0 |     20800 |  5.72 |
-|   LUT as Memory         |    0 |     0 |          0 |      9600 |  0.00 |
-| Slice Registers         | 2328 |     0 |          0 |     41600 |  5.60 |
-|   Register as Flip Flop | 2237 |     0 |          0 |     41600 |  5.38 |
-|   Register as Latch     |   91 |     0 |          0 |     41600 |  0.22 |
-| F7 Muxes                |  272 |     0 |          0 |     16300 |  1.67 |
-| F8 Muxes                |  136 |     0 |          0 |      8150 |  1.67 |
-+-------------------------+------+-------+------------+-----------+-------+
++----------------------------+------+-------+------------+-----------+-------+
+|          Site Type         | Used | Fixed | Prohibited | Available | Util% |
++----------------------------+------+-------+------------+-----------+-------+
+| Slice LUTs*                |  220 |     0 |          0 |     20800 |  1.06 |
+|   LUT as Logic             |  188 |     0 |          0 |     20800 |  0.90 |
+|   LUT as Memory            |   32 |     0 |          0 |      9600 |  0.33 |
+|     LUT as Distributed RAM |   32 |     0 |            |           |       |
+|     LUT as Shift Register  |    0 |     0 |            |           |       |
+| Slice Registers            |   33 |     0 |          0 |     41600 |  0.08 |
+|   Register as Flip Flop    |   33 |     0 |          0 |     41600 |  0.08 |
+|   Register as Latch        |    0 |     0 |          0 |     41600 |  0.00 |
+| F7 Muxes                   |   16 |     0 |          0 |     16300 |  0.10 |
+| F8 Muxes                   |    8 |     0 |          0 |      8150 |  0.10 |
++----------------------------+------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 Warning! LUT value is adjusted to account for LUT combining.
 
@@ -57,9 +59,9 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 91    |          Yes |           - |        Reset |
+| 0     |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 2237  |          Yes |       Reset |            - |
+| 33    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -92,7 +94,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   29 |     0 |          0 |       106 | 27.36 |
+| Bonded IOB                  |   32 |     0 |          0 |       106 | 30.19 |
 | Bonded IPADs                |    0 |     0 |          0 |        10 |  0.00 |
 | Bonded OPADs                |    0 |     0 |          0 |         4 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         5 |  0.00 |
@@ -117,7 +119,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +------------+------+-------+------------+-----------+-------+
 |  Site Type | Used | Fixed | Prohibited | Available | Util% |
 +------------+------+-------+------------+-----------+-------+
-| BUFGCTRL   |    2 |     0 |          0 |        32 |  6.25 |
+| BUFGCTRL   |    1 |     0 |          0 |        32 |  3.13 |
 | BUFIO      |    0 |     0 |          0 |        20 |  0.00 |
 | MMCME2_ADV |    0 |     0 |          0 |         5 |  0.00 |
 | PLLE2_ADV  |    0 |     0 |          0 |         5 |  0.00 |
@@ -151,31 +153,29 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     | 2237 |        Flop & Latch |
-| LUT6     |  937 |                 LUT |
-| MUXF7    |  272 |               MuxFx |
-| LUT5     |  233 |                 LUT |
-| MUXF8    |  136 |               MuxFx |
-| LDCE     |   91 |        Flop & Latch |
-| LUT3     |   58 |                 LUT |
-| LUT4     |   41 |                 LUT |
-| LUT2     |   27 |                 LUT |
-| IBUF     |   17 |                  IO |
-| CARRY4   |   14 |          CarryLogic |
+| LUT6     |   94 |                 LUT |
+| LUT5     |   33 |                 LUT |
+| FDRE     |   33 |        Flop & Latch |
+| RAMS64E  |   32 |  Distributed Memory |
+| LUT2     |   22 |                 LUT |
+| LUT4     |   21 |                 LUT |
+| IBUF     |   20 |                  IO |
+| MUXF7    |   16 |               MuxFx |
+| LUT3     |   15 |                 LUT |
 | OBUF     |   12 |                  IO |
-| LUT1     |    4 |                 LUT |
-| BUFG     |    2 |               Clock |
+| MUXF8    |    8 |               MuxFx |
+| CARRY4   |    6 |          CarryLogic |
+| LUT1     |    3 |                 LUT |
+| BUFG     |    1 |               Clock |
 +----------+------+---------------------+
 
 
 8. Black Boxes
 --------------
 
-+----------------+------+
-|    Ref Name    | Used |
-+----------------+------+
-| dsp_pc_counter |    1 |
-+----------------+------+
++----------+------+
+| Ref Name | Used |
++----------+------+
 
 
 9. Instantiated Netlists

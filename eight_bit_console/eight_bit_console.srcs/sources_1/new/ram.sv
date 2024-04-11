@@ -23,33 +23,25 @@
 module ram(
     input clk,
     input we,
-    input [15:0] addr,
+    input [7:0] addr,
     input [7:0] data_in,
-    output [7:0] data_out,
-    // Hack for memory mapped IO
-    input [15:0] sw_in,
-    output [15:0] sseg_out
+    output [7:0] data_out
     );
 
     reg [7:0] ram_mem [256];
     
     // Initialize RAM contents
-    initial begin
-      $readmemh ("ram.mem", ram_mem, 0);
-      ram_mem[16'hff] = 8'hff;
-      ram_mem[16'hfe] = 8'hff;
-    end
+//    initial begin
+//      $readmemh ("ram.mem", ram_mem, 0);
+//      ram_mem[8'hff] = 8'hff;
+//    end
     
     always_ff @(posedge clk) begin
         if (we) begin
             ram_mem[addr] <= data_in;
         end
-        ram_mem[16'hfd] <= sw_in[15:8];
-        ram_mem[16'hfc] <= sw_in[7:0];
     end
     
     assign data_out = ram_mem[addr];
-    assign sseg_out[15:8] = ram_mem[16'hff];
-    assign sseg_out[7:0] = ram_mem[16'hfe];
 
 endmodule
