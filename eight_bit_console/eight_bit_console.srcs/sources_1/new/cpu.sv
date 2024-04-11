@@ -36,7 +36,7 @@ typedef enum logic [1:0] {
     INS_FOUR = 3
 } InstructionSizes;
 
-typedef enum [4:0] {
+typedef enum logic [4:0] {
     ALU_ADD = 0,
     ALU_SUB = 1,
     ALU_MUL = 2,
@@ -64,6 +64,7 @@ typedef enum logic [6:0] {
     OP_MOV = 7'h00,       // Moves values between registers
     OP_LD = 7'h01,        // Fetch data from memory at a given address
     OP_STR = 7'h02,       // Store data to memory at a given address
+    OP_LDI = 7'h04,       // Load immediate into register
 
     // Control Flow Operations
     OP_JP = 7'h08,        // Jump to a given immediate address
@@ -95,23 +96,27 @@ module cpu(
     output logic [7:0] mem_data_out,
     output logic [15:0] mem_addr,
     output logic mem_we
-    
     );
     
+    initial mem_we = 0;
+    
+    logic alu_selector;
+    wire [7:0] alu_out;
+    
     logic rfile_wide_mode = 0;
-    logic rfile_we;
-    logic rfile_data_in;
-    wire rfile_data_in_wide;
-    logic rfile_write_sel;
-    logic rfile_sel_a;
-    logic rfile_sel_b;
-    wire rfile_output_a;
-    wire rfile_output_a_wide;
-    wire rfile_output_b;
-    wire rfile_output_b_wide;
-    logic rfile_flags_we;
-    wire rfile_new_flags;
-    wire rfile_cur_flags;
+    logic rfile_we = 0;
+    logic [7:0] rfile_data_in = alu_out;
+    wire [7:0] rfile_data_in_wide = 0;
+    logic [3:0] rfile_write_sel = 0;
+    logic [3:0] rfile_sel_a = 0;
+    logic [3:0] rfile_sel_b = 0;
+    wire [7:0] rfile_output_a;
+    wire [7:0] rfile_output_a_wide;
+    wire [7:0] rfile_output_b;
+    wire [7:0] rfile_output_b_wide;
+    logic rfile_flags_we = 0;
+    wire [7:0] rfile_new_flags;
+    wire [7:0] rfile_cur_flags;
     
     
     register_file rfile (
@@ -133,10 +138,6 @@ module cpu(
     );
     
     
-    logic alu_selector;
-    wire alu_out;
-    
-    
     alu_8bit alu_data (
         rfile_output_a,
         rfile_output_b,
@@ -147,8 +148,8 @@ module cpu(
     
     
     logic pc_enable = 1;
-    logic pc_write;
-    logic [15:0] pc_target_addr;
+    logic pc_write = 0;
+    logic [15:0] pc_target_addr = 0;
     logic [15:0] pc_cur_addr;
     
 //    logic [15:0] instruction_pointer;
@@ -170,16 +171,17 @@ module cpu(
     wire [3:0] src_bits = op_parts[2][7:4];
     wire [3:0] op1_bits = op_parts[2][7:4];
     wire [3:0] op2_bits = op_parts[2][3:0];
+    wire [7:0] immed_bits = op_parts[2];
     wire [15:0] op_dest_addr = {op_parts[2], op_parts[3]};
 
     logic is_min_op = op_parts[0][3];
     logic cond_met;
-    logic inst_size;
+    logic [1:0] inst_size;
     
     cond_check op_cond_check (op_parts[0][7:4], rfile_cur_flags, cond_met);
     instruction_size_decoder ins_size_decode (op_byte, inst_size);
     
-    logic fe_state = S_FETCH_1;
+    FetchExecState fe_state = S_FETCH_1;
     
     // State transitions
     always @(posedge clk) begin
@@ -207,9 +209,10 @@ module cpu(
     end
     
     // Combinational state logic
-    always_comb begin
+    always_latch begin
         case (fe_state)
             S_FETCH_1: begin
+                op_parts[0] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
                 rfile_we = 0;
@@ -217,14 +220,17 @@ module cpu(
                 pc_write = 0;
             end
             S_FETCH_2: begin
+                op_parts[1] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
             end
             S_FETCH_3: begin
+                op_parts[2] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
             end
             S_FETCH_4: begin
+                op_parts[3] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
             end
@@ -274,6 +280,11 @@ module cpu(
                             mem_addr = {rfile_output_a, rfile_output_a_wide};
                             mem_data_out = rfile_output_b;
                             mem_we = 1;
+                        end
+                        OP_LDI: begin
+                            rfile_data_in = immed_bits;
+                            rfile_write_sel = dest_bits;
+                            rfile_we = 1;
                         end
                         OP_JP: begin
                             pc_target_addr = op_dest_addr;
@@ -400,27 +411,6 @@ module cpu(
                         end
                     endcase
             end
-        endcase
-    end
-    
-    // Flip-flop state logic
-    always @(fe_state) begin
-        case (fe_state)
-            S_FETCH_1: begin
-                op_parts[0] <= mem_data_in;
-            end
-            S_FETCH_2: begin
-                op_parts[1] <= mem_data_in;
-            end
-            S_FETCH_3: begin
-                op_parts[2] <= mem_data_in;
-            end
-            S_FETCH_4: begin
-                op_parts[3] <= mem_data_in;
-            end
-//            S_JUMP_1: 
-//            S_JUMP_2:
-//            S_EXECUTE:
         endcase
     end
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1712781531" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/eight_bit_console_top.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1712794985" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/eight_bit_console_top.dcp">
   <File Type="VDS-TIMINGSUMMARY" Name="eight_bit_console_top_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="eight_bit_console_top.dcp"/>
   <File Type="RDS-UTIL-PB" Name="eight_bit_console_top_utilization_synth.pb"/>
@@ -39,10 +39,29 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/ram.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/eight_bit_console_top.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../ram.bin">
+      <FileInfo SFType="MIF">
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ram.mem">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
@@ -78,8 +97,14 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
-    <Step Id="synth_design"/>
+    <StratHandle Name="Flow_RuntimeOptimized" Flow="Vivado Synthesis 2023">
+      <Desc>Trades off Performance and Area for better Runtime.</Desc>
+    </StratHandle>
+    <Step Id="synth_design">
+      <Option Id="Directive">0</Option>
+      <Option Id="FlattenHierarchy">1</Option>
+      <Option Id="FsmExtraction">0</Option>
+    </Step>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="dsp_pc_counter"/>
 </GenRun>

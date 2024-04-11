@@ -86,8 +86,13 @@ set_property ip_output_repo /home/carson/Nextcloud/Documents/school/ECEN340/fina
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+read_mem {
+  /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/ram.bin
+  /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/ram.mem
+}
 read_verilog -library xil_defaultlib -sv {
   /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv
+  /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/ram.sv
   /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/eight_bit_console_top.sv
 }
 read_verilog -library xil_defaultlib {
@@ -116,7 +121,7 @@ read_checkpoint -auto_incremental -incremental /home/carson/Nextcloud/Documents/
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top eight_bit_console_top -part xc7a35tcpg236-1
+synth_design -top eight_bit_console_top -part xc7a35tcpg236-1 -flatten_hierarchy none -directive RuntimeOptimized -fsm_extraction off
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"

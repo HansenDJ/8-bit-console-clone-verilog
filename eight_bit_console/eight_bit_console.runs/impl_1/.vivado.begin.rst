@@ -8,3 +8,18 @@
     <Process Command="vivado" Owner="carson" Host="carson-yeet" Pid="34911" HostCore="16" HostMemory="65692080">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="carson" Host="carson-yeet" Pid="131043" HostCore="16" HostMemory="65692080">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="carson" Host="carson-yeet" Pid="138949" HostCore="16" HostMemory="65692080">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado" Owner="carson" Host="carson-yeet" Pid="142984" HostCore="16" HostMemory="65692080">
+    </Process>
+</ProcessHandle>

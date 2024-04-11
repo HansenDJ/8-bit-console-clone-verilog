@@ -29,36 +29,36 @@ module alu_8bit(
     );
     
     // ALU function outputs
-    wire add_out;
-    wire sub_out;
-    wire mul_out;
-    wire div_out;
-    wire xor_out;
-    wire or_out;
-    wire and_out;
-    wire not_out;
-    wire inc_out;
-    wire dec_out;
-    wire lsl_out;
-    wire lsr_out;
-    wire asl_out;
-    wire asr_out;
+    wire [7:0] add8_out;
+    wire [7:0] sub8_out = add8_out;
+    wire [7:0] mul8_out;
+    wire [7:0] div8_out;
+    wire [7:0] xor8_out;
+    wire [7:0] or8_out;
+    wire [7:0] and8_out;
+    wire [7:0] not8_out;
+    wire [7:0] inc8_out;
+    wire [7:0] dec8_out;
+    wire [7:0] lsl8_out;
+    wire [7:0] lsr8_out;
+    wire [7:0] asl8_out;
+    wire [7:0] asr8_out;
     
     // Flag outputs from functions
-    wire add_flags_out;
-    wire mul_flags_out;
-    wire div_flags_out;
-    wire xor_flags_out;
-    wire or_flags_out;
-    wire and_flags_out;
-    wire not_flags_out;
-    wire inc_flags_out;
-    wire dec_flags_out;
-    wire lsl_flags_out;
-    wire lsr_flags_out;
-    wire asl_flags_out;
-    wire asr_flags_out;
-    wire cmp_flags_out;
+    wire [4:0] add_flags_out;
+    wire [4:0] mul_flags_out;
+    wire [4:0] div_flags_out;
+    wire [4:0] xor_flags_out;
+    wire [4:0] or_flags_out;
+    wire [4:0] and_flags_out;
+    wire [4:0] not_flags_out;
+    wire [4:0] inc_flags_out;
+    wire [4:0] dec_flags_out;
+    wire [4:0] lsl_flags_out;
+    wire [4:0] lsr_flags_out;
+    wire [4:0] asl_flags_out;
+    wire [4:0] asr_flags_out;
+    wire [4:0] cmp_flags_out;
     
     // Dirty hack for add/sub
     reg sub = 0;
@@ -83,65 +83,65 @@ module alu_8bit(
     always @ (*) begin
         case (alu8_sel) // Addition function
             4'h0: begin
-                alu8_out <= add_out;
+                alu8_out <= add8_out;
                 sub <= 0;
-                flags_out <= add_flags_out;
+                flags_out <= {3'h0, add_flags_out};
             end
             4'h1: begin
-                alu8_out <= sub_out;
+                alu8_out <= sub8_out;
                 sub <= 1;
-                flags_out <= add_flags_out;
+                flags_out <= {3'h0, add_flags_out};
             end
             4'h2: begin
-                alu8_out <= mul_out;
-                flags_out <= mul_flags_out;
+                alu8_out <= mul8_out;
+                flags_out <= {3'h0, mul_flags_out};
             end
             4'h3: begin
-                alu8_out <= div_out;
-                flags_out <= div_flags_out;
+                alu8_out <= div8_out;
+                flags_out <= {3'h0, div_flags_out};
             end
             4'h4: begin
-                alu8_out <= xor_out;
-                flags_out <= xor_flags_out;
+                alu8_out <= xor8_out;
+                flags_out <= {3'h0, xor_flags_out};
             end
             4'h5: begin
-                alu8_out <= or_out;
-                flags_out <= or_flags_out;
+                alu8_out <= or8_out;
+                flags_out <= {3'h0, or_flags_out};
             end
             4'h6: begin
-                alu8_out <= and_out;
-                flags_out <= and_flags_out;
+                alu8_out <= and8_out;
+                flags_out <= {3'h0, and_flags_out};
             end
             4'h7: begin
-                alu8_out <= not_out;
-                flags_out <= not_flags_out;
+                alu8_out <= not8_out;
+                flags_out <= {3'h0, not_flags_out};
             end
             4'h8: begin
-                alu8_out <= inc_out;
-                flags_out <= inc_flags_out;
+                alu8_out <= inc8_out;
+                flags_out <= {3'h0, inc_flags_out};
             end
             4'h9: begin
-                alu8_out <= dec_out;
-                flags_out <= dec_flags_out;
+                alu8_out <= dec8_out;
+                flags_out <= {3'h0, dec_flags_out};
             end
             4'ha: begin
-                alu8_out <= lsl_out;
-                flags_out <= lsl_flags_out;
+                alu8_out <= lsl8_out;
+                flags_out <= {3'h0, lsl_flags_out};
             end
             4'hb: begin
-                alu8_out <= lsr_out;
-                flags_out <= lsr_flags_out;
+                alu8_out <= lsr8_out;
+                flags_out <= {3'h0, lsr_flags_out};
             end
             4'hc: begin
-                alu8_out <= asl_out;
-                flags_out <= asl_flags_out;
+                alu8_out <= asl8_out;
+                flags_out <= {3'h0, asl_flags_out};
             end
             4'hd: begin
-                alu8_out <= asr_out;
-                flags_out <= asr_flags_out;
+                alu8_out <= asr8_out;
+                flags_out <= {3'h0, asr_flags_out};
             end
             4'he: begin
-                flags_out <= cmp_flags_out;
+                flags_out <= {3'h0, cmp_flags_out};
             end
         endcase
     end
@@ -153,7 +153,6 @@ module add_8bit(
     input [7:0] b,
     input sub,
     output [7:0] add8_out,
-    output cout,
     output [4:0] add_flags_out // o, p, s, z, c flag bits
     );
     
