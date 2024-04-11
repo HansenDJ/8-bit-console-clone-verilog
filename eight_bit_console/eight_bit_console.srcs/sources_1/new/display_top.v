@@ -8,9 +8,7 @@ module display_top(
     output [6:0] seg 
     );
     
-    assign dp = 1'b1;
-    
-    wire [25:0] clkd;
+    wire clkd;
     wire [3:0] hex;
     reg [25:0] cnt = 0;
     

@@ -21,7 +21,7 @@ module eight_bit_console_top(
         .mem_we(mem_write_en)
     );
     
-//    logic [15:0] disp_mem;
+    logic [15:0] disp_mem;
     
     ram mem1 (
         .clk(hw_clk),

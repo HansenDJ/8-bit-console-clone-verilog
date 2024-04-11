@@ -3,13 +3,13 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Wed Apr 10 18:23:06 2024
-# Process ID: 141725
+# Start of session at: Wed Apr 10 19:52:24 2024
+# Process ID: 549531
 # Current directory: /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.runs/synth_1
 # Command line: vivado -log eight_bit_console_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source eight_bit_console_top.tcl
 # Log file: /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.runs/synth_1/eight_bit_console_top.vds
 # Journal file: /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.runs/synth_1/vivado.jou
-# Running On: carson-yeet, OS: Linux, CPU Frequency: 4514.506 MHz, CPU Physical cores: 16, Host memory: 67268 MB
+# Running On: carson-yeet, OS: Linux, CPU Frequency: 4541.561 MHz, CPU Physical cores: 16, Host memory: 67268 MB
 #-----------------------------------------------------------
 source eight_bit_console_top.tcl -notrace
 Command: read_checkpoint -auto_incremental -incremental /home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/utils_1/imports/synth_1/eight_bit_console_top.dcp
@@ -24,65 +24,74 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 141968
+INFO: [Synth 8-7075] Helper process launched with PID 549746
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2023.434 ; gain = 403.715 ; free physical = 45003 ; free virtual = 117806
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2023.461 ; gain = 403.715 ; free physical = 44360 ; free virtual = 117219
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'eight_bit_console_top' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/eight_bit_console_top.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'eight_bit_console_top' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/eight_bit_console_top.sv:3]
 INFO: [Synth 8-6157] synthesizing module 'cpu' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:93]
 INFO: [Synth 8-6157] synthesizing module 'register_file' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/register_file.v:23]
 INFO: [Synth 8-6157] synthesizing module 'wide_pair' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/register_file.v:69]
 INFO: [Synth 8-6155] done synthesizing module 'wide_pair' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/register_file.v:69]
 INFO: [Synth 8-6155] done synthesizing module 'register_file' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/register_file.v:23]
-INFO: [Synth 8-6157] synthesizing module 'alu_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:23]
-INFO: [Synth 8-6157] synthesizing module 'add_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:151]
-INFO: [Synth 8-6155] done synthesizing module 'add_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:151]
-INFO: [Synth 8-6157] synthesizing module 'mul_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:175]
-INFO: [Synth 8-6155] done synthesizing module 'mul_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:175]
-INFO: [Synth 8-6157] synthesizing module 'div_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:198]
-INFO: [Synth 8-6155] done synthesizing module 'div_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:198]
-INFO: [Synth 8-6157] synthesizing module 'xor_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:219]
-INFO: [Synth 8-6155] done synthesizing module 'xor_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:219]
-INFO: [Synth 8-6157] synthesizing module 'or_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:240]
-INFO: [Synth 8-6155] done synthesizing module 'or_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:240]
-INFO: [Synth 8-6157] synthesizing module 'and_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:261]
-INFO: [Synth 8-6155] done synthesizing module 'and_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:261]
-INFO: [Synth 8-6157] synthesizing module 'not_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:282]
-INFO: [Synth 8-6155] done synthesizing module 'not_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:282]
-INFO: [Synth 8-6157] synthesizing module 'inc_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:302]
-INFO: [Synth 8-6155] done synthesizing module 'inc_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:302]
-INFO: [Synth 8-6157] synthesizing module 'dec_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:322]
-INFO: [Synth 8-6155] done synthesizing module 'dec_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:322]
-INFO: [Synth 8-6157] synthesizing module 'lsl_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:342]
-INFO: [Synth 8-6155] done synthesizing module 'lsl_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:342]
-INFO: [Synth 8-6157] synthesizing module 'lsr_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:362]
-INFO: [Synth 8-6155] done synthesizing module 'lsr_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:362]
-INFO: [Synth 8-6157] synthesizing module 'asl_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:382]
-INFO: [Synth 8-6155] done synthesizing module 'asl_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:382]
-INFO: [Synth 8-6157] synthesizing module 'asr_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:402]
-INFO: [Synth 8-6155] done synthesizing module 'asr_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:402]
-INFO: [Synth 8-6157] synthesizing module 'cmp_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:422]
-INFO: [Synth 8-6155] done synthesizing module 'cmp_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:422]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:84]
-INFO: [Synth 8-6155] done synthesizing module 'alu_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:23]
+INFO: [Synth 8-6157] synthesizing module 'alu_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'add_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:150]
+INFO: [Synth 8-6155] done synthesizing module 'add_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:150]
+INFO: [Synth 8-6157] synthesizing module 'mul_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:174]
+INFO: [Synth 8-6155] done synthesizing module 'mul_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:174]
+INFO: [Synth 8-6157] synthesizing module 'div_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:197]
+INFO: [Synth 8-6155] done synthesizing module 'div_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:197]
+INFO: [Synth 8-6157] synthesizing module 'xor_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:218]
+INFO: [Synth 8-6155] done synthesizing module 'xor_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:218]
+INFO: [Synth 8-6157] synthesizing module 'or_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:239]
+INFO: [Synth 8-6155] done synthesizing module 'or_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:239]
+INFO: [Synth 8-6157] synthesizing module 'and_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:260]
+INFO: [Synth 8-6155] done synthesizing module 'and_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:260]
+INFO: [Synth 8-6157] synthesizing module 'not_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:281]
+INFO: [Synth 8-6155] done synthesizing module 'not_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:281]
+INFO: [Synth 8-6157] synthesizing module 'inc_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:301]
+INFO: [Synth 8-6155] done synthesizing module 'inc_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:301]
+INFO: [Synth 8-6157] synthesizing module 'dec_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:321]
+INFO: [Synth 8-6155] done synthesizing module 'dec_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:321]
+INFO: [Synth 8-6157] synthesizing module 'lsl_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:341]
+INFO: [Synth 8-6155] done synthesizing module 'lsl_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:341]
+INFO: [Synth 8-6157] synthesizing module 'lsr_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:361]
+INFO: [Synth 8-6155] done synthesizing module 'lsr_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:361]
+INFO: [Synth 8-6157] synthesizing module 'asl_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:381]
+INFO: [Synth 8-6155] done synthesizing module 'asl_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:381]
+INFO: [Synth 8-6157] synthesizing module 'asr_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:401]
+INFO: [Synth 8-6155] done synthesizing module 'asr_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:401]
+INFO: [Synth 8-6157] synthesizing module 'cmp_8bit' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:421]
+INFO: [Synth 8-6155] done synthesizing module 'cmp_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:421]
+INFO: [Synth 8-6155] done synthesizing module 'alu_8bit' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.sv:3]
 INFO: [Synth 8-6157] synthesizing module 'program_counter' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/program_counter.v:23]
-INFO: [Synth 8-6157] synthesizing module 'dsp_pc_counter' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.runs/synth_1/.Xil/Vivado-141725-carson-yeet/realtime/dsp_pc_counter_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'dsp_pc_counter' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.runs/synth_1/.Xil/Vivado-141725-carson-yeet/realtime/dsp_pc_counter_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'dsp_pc_counter' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.runs/synth_1/.Xil/Vivado-549531-carson-yeet/realtime/dsp_pc_counter_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'dsp_pc_counter' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.runs/synth_1/.Xil/Vivado-549531-carson-yeet/realtime/dsp_pc_counter_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'program_counter' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/program_counter.v:23]
-INFO: [Synth 8-6157] synthesizing module 'cond_check' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:429]
-INFO: [Synth 8-6155] done synthesizing module 'cond_check' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:429]
-INFO: [Synth 8-6157] synthesizing module 'instruction_size_decoder' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:461]
-INFO: [Synth 8-6155] done synthesizing module 'instruction_size_decoder' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:461]
+INFO: [Synth 8-6157] synthesizing module 'cond_check' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:435]
+INFO: [Synth 8-6155] done synthesizing module 'cond_check' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:435]
+INFO: [Synth 8-6157] synthesizing module 'instruction_size_decoder' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:467]
+INFO: [Synth 8-6155] done synthesizing module 'instruction_size_decoder' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:467]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:188]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:250]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:263]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:256]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:269]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:213]
 INFO: [Synth 8-6155] done synthesizing module 'cpu' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:93]
 INFO: [Synth 8-6157] synthesizing module 'ram' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/ram.sv:23]
-INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/ram.sv:42]
+INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/ram.sv:38]
 INFO: [Synth 8-6155] done synthesizing module 'ram' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/ram.sv:23]
-WARNING: [Synth 8-689] width (1) of port connection 'sseg_out' does not match port width (16) of module 'ram' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/eight_bit_console_top.sv:51]
-INFO: [Synth 8-6155] done synthesizing module 'eight_bit_console_top' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/eight_bit_console_top.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'display_top' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/display_top.v:3]
+INFO: [Synth 8-6157] synthesizing module 'digit_selector' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/digit_selector.v:3]
+INFO: [Synth 8-226] default block is never used [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/digit_selector.v:18]
+INFO: [Synth 8-6155] done synthesizing module 'digit_selector' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/digit_selector.v:3]
+INFO: [Synth 8-6157] synthesizing module 'hex_gen' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/hex_gen.v:3]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/hex_gen.v:11]
+WARNING: [Synth 8-567] referenced signal 'data' should be on the sensitivity list [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/hex_gen.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'hex_gen' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/hex_gen.v:3]
+INFO: [Synth 8-6157] synthesizing module 'display' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/display.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'display' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/display.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'display_top' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/display_top.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'eight_bit_console_top' (0#1) [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/eight_bit_console_top.sv:3]
 WARNING: [Synth 8-4767] Trying to implement RAM 'registers_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
 Reason is one or more of the following :
 	1: RAM has multiple writes via different ports in same process. If RAM inferencing intended, write to one port per process. 
@@ -93,18 +102,18 @@ WARNING: [Synth 8-7129] Port flags[7] in module cond_check is either unconnected
 WARNING: [Synth 8-7129] Port flags[6] in module cond_check is either unconnected or has no load
 WARNING: [Synth 8-7129] Port flags[5] in module cond_check is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2147.371 ; gain = 527.652 ; free physical = 44866 ; free virtual = 117670
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2142.398 ; gain = 522.652 ; free physical = 44213 ; free virtual = 117073
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2162.215 ; gain = 542.496 ; free physical = 44862 ; free virtual = 117666
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2157.242 ; gain = 537.496 ; free physical = 44213 ; free virtual = 117073
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 2162.215 ; gain = 542.496 ; free physical = 44862 ; free virtual = 117666
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2157.242 ; gain = 537.496 ; free physical = 44213 ; free virtual = 117073
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2162.215 ; gain = 0.000 ; free physical = 44862 ; free virtual = 117666
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2157.242 ; gain = 0.000 ; free physical = 44213 ; free virtual = 117072
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -117,35 +126,32 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/eight_bit_console_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2300.965 ; gain = 0.000 ; free physical = 44855 ; free virtual = 117659
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2299.023 ; gain = 0.000 ; free physical = 44196 ; free virtual = 117057
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2301.000 ; gain = 0.000 ; free physical = 44855 ; free virtual = 117659
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2299.059 ; gain = 0.000 ; free physical = 44196 ; free virtual = 117057
 WARNING: [Timing 38-316] Clock period '100.000' specified during out-of-context synthesis of instance 'core1/prog_count/dsp_cnt' at clock pin 'CLK' is different from the actual clock period '10.000', this can lead to different synthesis results.
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44814 ; free virtual = 117618
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44156 ; free virtual = 117017
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44814 ; free virtual = 117618
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44156 ; free virtual = 117017
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for core1/prog_count/dsp_cnt. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44814 ; free virtual = 117618
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44156 ; free virtual = 117017
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-327] inferring latch for variable 'alu8_out_reg' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:86]
-WARNING: [Synth 8-327] inferring latch for variable 'flags_out_reg' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:88]
-WARNING: [Synth 8-327] inferring latch for variable 'sub_reg' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/alu_8bit.v:67]
-WARNING: [Synth 8-327] inferring latch for variable 'mem_data_out_reg' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:281]
+WARNING: [Synth 8-327] inferring latch for variable 'mem_data_out_reg' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:287]
 WARNING: [Synth 8-327] inferring latch for variable 'mem_addr_reg' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:216]
 WARNING: [Synth 8-327] inferring latch for variable 'mem_we_reg' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:219]
 WARNING: [Synth 8-327] inferring latch for variable 'op_parts_reg[0]' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:168]
@@ -162,8 +168,9 @@ WARNING: [Synth 8-327] inferring latch for variable 'pc_target_addr_reg' [/home/
 WARNING: [Synth 8-327] inferring latch for variable 'op_parts_reg[2]' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:168]
 WARNING: [Synth 8-327] inferring latch for variable 'alu_selector_reg' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:144]
 WARNING: [Synth 8-327] inferring latch for variable 'op_parts_reg[3]' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/cpu.sv:168]
+WARNING: [Synth 8-327] inferring latch for variable 'hex_reg' [/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.srcs/sources_1/new/hex_gen.v:12]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44802 ; free virtual = 117607
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44168 ; free virtual = 117030
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -175,31 +182,34 @@ Detailed RTL Component Info :
 	   2 Input    8 Bit       Adders := 2     
 	   3 Input    8 Bit       Adders := 1     
 	   2 Input    4 Bit       Adders := 3     
+	   2 Input    2 Bit       Adders := 1     
 +---XORs : 
 	   2 Input      8 Bit         XORs := 1     
 +---Registers : 
 	                8 Bit    Registers := 273   
 	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
 +---Multipliers : 
 	                8x8  Multipliers := 1     
-+---RAMs : 
-	               2K Bit	(256 X 8 bit)          RAMs := 1     
 +---Muxes : 
 	   2 Input  128 Bit        Muxes := 1     
 	   8 Input   16 Bit        Muxes := 2     
 	   2 Input   16 Bit        Muxes := 1     
 	   2 Input    9 Bit        Muxes := 1     
-	   2 Input    8 Bit        Muxes := 35    
+	   2 Input    8 Bit        Muxes := 34    
 	  21 Input    8 Bit        Muxes := 1     
-	   2 Input    4 Bit        Muxes := 6     
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 7     
 	  21 Input    4 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 1     
+	   5 Input    4 Bit        Muxes := 1     
 	   2 Input    3 Bit        Muxes := 1     
 	   5 Input    3 Bit        Muxes := 1     
 	   9 Input    3 Bit        Muxes := 1     
 	   2 Input    1 Bit        Muxes := 32    
-	  16 Input    1 Bit        Muxes := 3     
-	   8 Input    1 Bit        Muxes := 18    
-	   5 Input    1 Bit        Muxes := 1     
+	  16 Input    1 Bit        Muxes := 1     
+	   8 Input    1 Bit        Muxes := 19    
+	   5 Input    1 Bit        Muxes := 2     
 	  21 Input    1 Bit        Muxes := 7     
 	  22 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
@@ -218,64 +228,20 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-3332] Sequential element (alu8_out_reg[6]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (alu8_out_reg[5]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (alu8_out_reg[4]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (alu8_out_reg[3]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (alu8_out_reg[2]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (alu8_out_reg[1]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (flags_out_reg[7]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (flags_out_reg[6]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (flags_out_reg[5]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (flags_out_reg[4]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (flags_out_reg[1]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (flags_out_reg[0]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (sub_reg) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (flags_out_reg[3]) is unused and will be removed from module alu_8bit.
-WARNING: [Synth 8-3332] Sequential element (flags_out_reg[2]) is unused and will be removed from module alu_8bit.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44827 ; free virtual = 117639
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP, Shift Register and Retiming Reporting
----------------------------------------------------------------------------------
-
-Distributed RAM: Preliminary Mapping Report (see note below)
-+------------+-------------+-----------+----------------------+----------------+
-|Module Name | RTL Object  | Inference | Size (Depth x Width) | Primitives     | 
-+------------+-------------+-----------+----------------------+----------------+
-|mem1        | ram_mem_reg | Implied   | 256 x 8              | RAM256X1S x 8  | 
-+------------+-------------+-----------+----------------------+----------------+
-
-Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44115 ; free virtual = 116983
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44817 ; free virtual = 117630
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP, Shift Register and Retiming Reporting
----------------------------------------------------------------------------------
-
-Distributed RAM: Final Mapping Report
-+------------+-------------+-----------+----------------------+----------------+
-|Module Name | RTL Object  | Inference | Size (Depth x Width) | Primitives     | 
-+------------+-------------+-----------+----------------------+----------------+
-|mem1        | ram_mem_reg | Implied   | 256 x 8              | RAM256X1S x 8  | 
-+------------+-------------+-----------+----------------------+----------------+
-
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44120 ; free virtual = 116989
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44817 ; free virtual = 117630
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44125 ; free virtual = 116994
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -287,19 +253,19 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44824 ; free virtual = 117636
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44115 ; free virtual = 116984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44824 ; free virtual = 117636
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44115 ; free virtual = 116984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44824 ; free virtual = 117636
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44115 ; free virtual = 116984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -318,47 +284,46 @@ Report Cell Usage:
 +------+---------------+------+
 |1     |dsp_pc_counter |     1|
 |2     |BUFG           |     1|
-|3     |CARRY4         |     9|
-|4     |LUT1           |     2|
-|5     |LUT2           |    10|
-|6     |LUT3           |    31|
-|7     |LUT4           |    43|
-|8     |LUT5           |    26|
-|9     |LUT6           |   285|
-|10    |MUXF7          |    51|
-|11    |MUXF8          |    24|
-|12    |RAM256X1S      |     8|
-|13    |FDRE           |   160|
-|14    |LD             |    98|
-|15    |IBUF           |    17|
-|16    |OBUF           |     1|
+|3     |CARRY4         |    14|
+|4     |LUT1           |     5|
+|5     |LUT2           |    24|
+|6     |LUT3           |    24|
+|7     |LUT4           |    59|
+|8     |LUT5           |    33|
+|9     |LUT6           |  1131|
+|10    |MUXF7          |   323|
+|11    |MUXF8          |   160|
+|12    |FDRE           |  2205|
+|13    |LD             |   102|
+|14    |IBUF           |    17|
+|15    |OBUF           |    12|
 +------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44824 ; free virtual = 117636
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44115 ; free virtual = 116984
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 36 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2301.000 ; gain = 542.496 ; free physical = 44826 ; free virtual = 117639
-Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2301.000 ; gain = 681.281 ; free physical = 44826 ; free virtual = 117639
+Synthesis finished with 0 errors, 0 critical warnings and 19 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 2299.059 ; gain = 537.496 ; free physical = 44115 ; free virtual = 116984
+Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 2299.059 ; gain = 679.312 ; free physical = 44115 ; free virtual = 116984
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2301.000 ; gain = 0.000 ; free physical = 45122 ; free virtual = 117935
-INFO: [Netlist 29-17] Analyzing 190 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2299.059 ; gain = 0.000 ; free physical = 44408 ; free virtual = 117277
+INFO: [Netlist 29-17] Analyzing 599 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'eight_bit_console_top' is not ideal for floorplanning, since the cellview 'ram' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2301.000 ; gain = 0.000 ; free physical = 45139 ; free virtual = 117952
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2299.059 ; gain = 0.000 ; free physical = 44417 ; free virtual = 117286
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 106 instances were transformed.
-  LD => LDCE: 98 instances
-  RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 8 instances
+  A total of 102 instances were transformed.
+  LD => LDCE: 102 instances
 
-Synth Design complete | Checksum: a0a98988
+Synth Design complete | Checksum: 1d64b442
 INFO: [Common 17-83] Releasing license: Synthesis
-75 Infos, 42 Warnings, 0 Critical Warnings and 0 Errors encountered.
+84 Infos, 26 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:23 . Memory (MB): peak = 2301.000 ; gain = 977.383 ; free physical = 45139 ; free virtual = 117952
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2006.980; main = 1697.368; forked = 424.412
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3253.227; main = 2300.969; forked = 984.273
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2324.977 ; gain = 0.000 ; free physical = 45139 ; free virtual = 117952
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:23 . Memory (MB): peak = 2299.059 ; gain = 981.414 ; free physical = 44418 ; free virtual = 117286
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1940.154; main = 1609.844; forked = 405.378
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3251.766; main = 2299.027; forked = 984.754
+Write ShapeDB Complete: Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2323.035 ; gain = 0.000 ; free physical = 44418 ; free virtual = 117286
 INFO: [Common 17-1381] The checkpoint '/home/carson/Nextcloud/Documents/school/ECEN340/final_project/8-bit-console-clone-verilog/eight_bit_console/eight_bit_console.runs/synth_1/eight_bit_console_top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file eight_bit_console_top_utilization_synth.rpt -pb eight_bit_console_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Apr 10 18:23:35 2024...
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 10 19:52:53 2024...

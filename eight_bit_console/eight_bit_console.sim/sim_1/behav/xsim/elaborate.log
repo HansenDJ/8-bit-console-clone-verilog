@@ -1,7 +1,7 @@
 Vivado Simulator v2023.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: /opt/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot register_file_tb_behav xil_defaultlib.register_file_tb xil_defaultlib.glbl -log elaborate.log 
+Running: /opt/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot register_file_behav xil_defaultlib.register_file xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -11,6 +11,5 @@ Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling module xil_defaultlib.wide_pair
 Compiling module xil_defaultlib.register_file
-Compiling module xil_defaultlib.register_file_tb
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot register_file_tb_behav
+Built simulation snapshot register_file_behav

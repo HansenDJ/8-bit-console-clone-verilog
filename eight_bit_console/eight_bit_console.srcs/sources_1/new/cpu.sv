@@ -218,31 +218,37 @@ module cpu(
                 rfile_we = 0;
                 mem_we = 0;
                 pc_write = 0;
+                alu_selector = 2;
             end
             S_FETCH_2: begin
                 op_parts[1] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
+                alu_selector = 2;
             end
             S_FETCH_3: begin
                 op_parts[2] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
+                alu_selector = 2;
             end
             S_FETCH_4: begin
                 op_parts[3] <= mem_data_in;
                 mem_addr = pc_cur_addr;
                 pc_enable = 1;
+                alu_selector = 2;
             end
             S_JUMP_1: begin
                 // Same as incrementing program counter by 1
                 pc_enable = 1;
+                alu_selector = 2;
             end
             S_JUMP_2: begin
                 // Loading this will override the +1 increment into a +2 increment
                 pc_enable = 1;
                 pc_write = 1;
                 pc_target_addr = pc_cur_addr + 2;
+                alu_selector = 2;
             end
             S_EXECUTE: begin
                 pc_enable = 0;
