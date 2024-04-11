@@ -60,90 +60,93 @@ module alu_8bit(
     cmp_8bit cmp8 (alu8_in_a, alu8_in_b, cmp_flags_out);
     
     // Demultiplexer: Connect function output to ALU output
-    always_comb begin
-        case (alu8_sel) // Addition function
-            4'h0: begin
-                alu8_out = add8_out;
-                sub = 0;
-                flags_out = {3'h0, add_flags_out};
-            end
-            4'h1: begin
-                alu8_out = sub8_out;
-                sub = 1;
-                flags_out = {3'h0, add_flags_out};
-            end
-            4'h2: begin
-                alu8_out = mul8_out;
-                sub = 0;
-                flags_out = {3'h0, mul_flags_out};
-            end
-            4'h3: begin
-                alu8_out = div8_out;
-                sub = 0;
-                flags_out = {3'h0, div_flags_out};
-            end
-            4'h4: begin
-                alu8_out = xor8_out;
-                sub = 0;
-                flags_out = {3'h0, xor_flags_out};
-            end
-            4'h5: begin
-                alu8_out = or8_out;
-                sub = 0;
-                flags_out = {3'h0, or_flags_out};
-            end
-            4'h6: begin
-                alu8_out = and8_out;
-                sub = 0;
-                flags_out = {3'h0, and_flags_out};
-            end
-            4'h7: begin
-                alu8_out = not8_out;
-                sub = 0;
-                flags_out = {3'h0, not_flags_out};
-            end
-            4'h8: begin
-                alu8_out = inc8_out;
-                sub = 0;
-                flags_out = {3'h0, inc_flags_out};
-            end
-            4'h9: begin
-                alu8_out = dec8_out;
-                sub = 0;
-                flags_out = {3'h0, dec_flags_out};
-            end
-            4'ha: begin
-                alu8_out = lsl8_out;
-                sub = 0;
-                flags_out = {3'h0, lsl_flags_out};
-            end
-            4'hb: begin
-                alu8_out = lsr8_out;
-                sub = 0;
-                flags_out = {3'h0, lsr_flags_out};
-            end
-            4'hc: begin
-                alu8_out = asl8_out;
-                sub = 0;
-                flags_out = {3'h0, asl_flags_out};
-            end
-            4'hd: begin
-                alu8_out = asr8_out;
-                sub = 0;
-                flags_out = {3'h0, asr_flags_out};
-            end
-            4'he: begin
-                alu8_out = alu8_in_a;
-                sub = 0;
-                flags_out = {3'h0, cmp_flags_out};
-            end
-            default: begin
-                alu8_out = alu8_in_a;
-                sub = 0;
-                flags_out = 8'h0;
-            end
-        endcase
-    end
+    assign alu8_out = (alu8_sel == 0 | alu8_sel == 1) ? add8_out : (alu8_sel == 2) ? mul8_out : (alu8_sel == 3) ? div8_out : (alu8_sel == 4) ? xor8_out : (alu8_sel == 5) ? or8_out : (alu8_sel == 6) ? and8_out : (alu8_sel == 7) ? not8_out : (alu8_sel == 8) ? inc8_out : (alu8_sel == 9) ? dec8_out : (alu8_sel == 10) ? lsl8_out : (alu8_sel == 11) ? lsr8_out : (alu8_sel == 12) ? asl8_out : (alu8_sel == 13) ? asr8_out : alu8_in_a;
+    assign flags_out = (alu8_sel == 0 | alu8_sel == 1) ? add_flags_out : (alu8_sel == 2) ? mul_flags_out : (alu8_sel == 3) ? div_flags_out : (alu8_sel == 4) ? xor_flags_out : (alu8_sel == 5) ? or_flags_out : (alu8_sel == 6) ? and_flags_out : (alu8_sel == 7) ? not_flags_out : (alu8_sel == 8) ? inc_flags_out : (alu8_sel == 9) ? dec_flags_out : (alu8_sel == 10) ? lsl_flags_out : (alu8_sel == 11) ? lsr_flags_out : (alu8_sel == 12) ? asl_flags_out : (alu8_sel == 13) ? asr_flags_out : 8'h0;
+    assign sub = (alu8_sel == 1);
+//    always_comb begin
+//        case (alu8_sel) // Addition function
+//            4'h0: begin
+//                alu8_out = add8_out;
+//                sub = 0;
+//                flags_out = {3'h0, add_flags_out};
+//            end
+//            4'h1: begin
+//                alu8_out = sub8_out;
+//                sub = 1;
+//                flags_out = {3'h0, add_flags_out};
+//            end
+//            4'h2: begin
+//                alu8_out = mul8_out;
+//                sub = 0;
+//                flags_out = {3'h0, mul_flags_out};
+//            end
+//            4'h3: begin
+//                alu8_out = div8_out;
+//                sub = 0;
+//                flags_out = {3'h0, div_flags_out};
+//            end
+//            4'h4: begin
+//                alu8_out = xor8_out;
+//                sub = 0;
+//                flags_out = {3'h0, xor_flags_out};
+//            end
+//            4'h5: begin
+//                alu8_out = or8_out;
+//                sub = 0;
+//                flags_out = {3'h0, or_flags_out};
+//            end
+//            4'h6: begin
+//                alu8_out = and8_out;
+//                sub = 0;
+//                flags_out = {3'h0, and_flags_out};
+//            end
+//            4'h7: begin
+//                alu8_out = not8_out;
+//                sub = 0;
+//                flags_out = {3'h0, not_flags_out};
+//            end
+//            4'h8: begin
+//                alu8_out = inc8_out;
+//                sub = 0;
+//                flags_out = {3'h0, inc_flags_out};
+//            end
+//            4'h9: begin
+//                alu8_out = dec8_out;
+//                sub = 0;
+//                flags_out = {3'h0, dec_flags_out};
+//            end
+//            4'ha: begin
+//                alu8_out = lsl8_out;
+//                sub = 0;
+//                flags_out = {3'h0, lsl_flags_out};
+//            end
+//            4'hb: begin
+//                alu8_out = lsr8_out;
+//                sub = 0;
+//                flags_out = {3'h0, lsr_flags_out};
+//            end
+//            4'hc: begin
+//                alu8_out = asl8_out;
+//                sub = 0;
+//                flags_out = {3'h0, asl_flags_out};
+//            end
+//            4'hd: begin
+//                alu8_out = asr8_out;
+//                sub = 0;
+//                flags_out = {3'h0, asr_flags_out};
+//            end
+//            4'he: begin
+//                alu8_out = alu8_in_a;
+//                sub = 0;
+//                flags_out = {3'h0, cmp_flags_out};
+//            end
+//            default: begin
+//                alu8_out = alu8_in_a;
+//                sub = 0;
+//                flags_out = 8'h0;
+//            end
+//        endcase
+//    end
 endmodule
 
 // Addition and subtraction
