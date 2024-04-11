@@ -1,29 +1,11 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03/27/2024 12:36:00 AM
-// Design Name: 
-// Module Name: eight_bit_console_top
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module eight_bit_console_top(
     input hw_clk,
     input [15:0] switches,
-    output disp_mem
+    output dp,
+    output [3:0] an,
+    output [6:0] seg
     );
     
     logic [7:0] cpu_din;
@@ -49,6 +31,14 @@ module eight_bit_console_top(
         .data_out(cpu_din),
         .sw_in(switches),
         .sseg_out(disp_mem)
+    );
+        
+    display_top disp (
+        .clk(hw_clk),
+        .mem_in(disp_mem),
+        .dp(dp),
+        .an(an),
+        .seg(seg)
     );
     
 endmodule
